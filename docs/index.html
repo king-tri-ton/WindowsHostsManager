@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WindowsHostsManager Документация</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <aside>
+        <h2>Навигация</h2>
+        <ul class="nav">
+            <li><a href="#overview">Обзор</a></li>
+            <li><a href="#installation">Установка</a></li>
+            <li><a href="#usage">Использование</a></li>
+            <li><a href="#commands">Команды</a></li>
+            <li><a href="#examples">Примеры</a></li>
+            <li><a href="#troubleshooting">Решение проблем</a></li>
+            <li><a href="#contact">Контакты</a></li>
+        </ul>
+    </aside>
+    
+    <main>
+        <header>
+            <h1>Документация WindowsHostsManager</h1>
+            <p>Дата публикации: 2 сентября 2024 | Версия: 1.0</p>
+        </header>
+
+        <section id="overview">
+            <h2>Обзор</h2>
+            <p>WindowsHostsManager — это утилита для управления файлом <code>hosts</code> в операционной системе Windows. Она позволяет добавлять, удалять, просматривать записи и очищать файл <code>hosts</code>, что полезно для управления локальными доменными именами и IP-адресами.</p>
+        </section>
+        
+        <section id="installation">
+            <h2>Установка</h2>
+            <p>Для установки WindowsHostsManager выполните следующие шаги:</p>
+            <ol>
+                <li>Скачайте последний релиз программы с <a href="https://github.com/king-tri-ton/WindowsHostsManager">официального репозитория</a>.</li>
+                <li>Убедитесь, что у вас установлен Python версии 3.x.</li>
+                <li>Перейдите в каталог с загруженным файлом <code>app.py</code>.</li>
+                <li>Откройте командную строку и выполните команду:</li>
+                <pre><code>python app.py</code></pre>
+            </ol>
+            <p>Программа потребует прав администратора для доступа к файлу <code>hosts</code>.</p>
+        </section>
+        
+        <section id="usage">
+            <h2>Использование</h2>
+            <p>Для работы с программой выполните команду в терминале:</p>
+            <pre><code>python app.py</code></pre>
+            <p>После запуска вы увидите приглашение для ввода команд. Следуйте инструкциям на экране для выполнения различных операций с файлом <code>hosts</code>.</p>
+            <img src="assets/img/149.png" alt="Использование WindowsHostsManager">
+        </section>
+        
+        <section id="commands">
+            <h2>Команды</h2>
+            <p>WindowsHostsManager поддерживает следующие команды:</p>
+            <ul>
+                <li><strong>add &lt;IP&gt; &lt;hostname&gt;</strong> — Добавить запись в файл <code>hosts</code>. Пример: <code>add 127.0.0.1 example.com</code></li>
+                <li><strong>remove &lt;hostname&gt;</strong> — Удалить запись по имени хоста. Пример: <code>remove example.com</code></li>
+                <li><strong>list</strong> — Показать все текущие записи в файле <code>hosts</code>.</li>
+                <li><strong>clear</strong> — Очистить экран терминала.</li>
+                <li><strong>help</strong> — Показать список доступных команд.</li>
+                <li><strong>exit</strong> — Выйти из программы.</li>
+            </ul>
+        </section>
+        
+        <section id="examples">
+            <h2>Примеры</h2>
+            <p>Ниже приведены примеры использования команды:</p>
+            <p><strong>Добавление записи:</strong></p>
+            <pre><code>Введите команду: add 127.0.0.1 example.com
+Добавлено: 127.0.0.1 example.com</code></pre>
+            <p><strong>Удаление записи:</strong></p>
+            <pre><code>Введите команду: remove example.com
+Удалены записи для: example.com</code></pre>
+            <p><strong>Просмотр всех записей:</strong></p>
+            <pre><code>Введите команду: list
+Текущие записи в файле hosts:
+127.0.0.1 localhost
+127.0.0.1 example.com</code></pre>
+        </section>
+        
+        <section id="troubleshooting">
+            <h2>Решение проблем</h2>
+            <p>Если у вас возникли проблемы с использованием WindowsHostsManager, попробуйте следующие шаги:</p>
+            <ul>
+                <li>Убедитесь, что вы запускаете программу с правами администратора.</li>
+                <li>Проверьте, что файл <code>hosts</code> не открыт в другом приложении.</li>
+                <li>Если команда не работает, проверьте синтаксис и правильность введенных данных.</li>
+                <li>Если проблема не устраняется, обратитесь в службу поддержки.</li>
+            </ul>
+        </section>
+
+        <section id="contact">
+            <h2>Контакты</h2>
+            <p>Если у вас есть вопросы или предложения, вы можете связаться с нами по электронной почте: <a href="mailto:mdolmatov99@gmail.com">mdolmatov99@gmail.com</a></p>
+        </section>
+    </main>
+</body>
+</html>
