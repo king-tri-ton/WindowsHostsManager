@@ -20,6 +20,8 @@ WindowsHostsManager — это утилита для управления фай
 python app.py
 ```
 
+![Использование WindowsHostsManager](https://github.com/king-tri-ton/WindowsHostsManager/blob/master/docs/assets/img/149.png)
+
 **Важно:** Программа требует прав администратора, так как файл `hosts` находится в системной директории.
 
 ## Команды
