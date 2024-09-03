@@ -1,6 +1,6 @@
 # WindowsHostsManager
 
-WindowsHostsManager — это утилита для управления файлом `hosts` в операционной системе Windows. Программа позволяет добавлять, удалять, просматривать и очищать записи в файле `hosts`, что может быть полезно для перенаправления доменных имен на определенные IP-адреса.
+WindowsHostsManager — это утилита для управления файлом `hosts` в операционной системе Windows. Программа позволяет добавлять, удалять, просматривать записи, создавать резервные копии и восстанавливать файл `hosts`.
 
 ## Требования
 
@@ -9,7 +9,7 @@ WindowsHostsManager — это утилита для управления фай
 
 ## Установка
 
-1. Клонируйте репозиторий или скачайте файл `WindowsHostsManager.py`.
+1. Клонируйте репозиторий или скачайте файл `app.py`.
 2. Убедитесь, что у вас установлен Python 3.x.
 
 ## Запуск
@@ -20,8 +20,6 @@ WindowsHostsManager — это утилита для управления фай
 python app.py
 ```
 
-![Использование WindowsHostsManager](https://github.com/king-tri-ton/WindowsHostsManager/blob/master/docs/assets/img/149.png)
-
 **Важно:** Программа требует прав администратора, так как файл `hosts` находится в системной директории.
 
 ## Команды
@@ -29,6 +27,8 @@ python app.py
 - `add <IP> <hostname>` — Добавить запись в файл `hosts`. Например: `add 127.0.0.1 example.com`
 - `remove <hostname>` — Удалить запись по имени хоста. Например: `remove example.com`
 - `list` — Показать все текущие записи в файле `hosts`.
+- `backup` — Создать резервную копию файла `hosts`.
+- `restore` — Восстановить файл `hosts` из резервной копии.
 - `clear` — Очистить экран терминала.
 - `help` — Показать список доступных команд.
 - `exit` — Выйти из программы.
@@ -64,15 +64,32 @@ python app.py
   127.0.0.1 example.com
   ```
 
+- Создать резервную копию:
+  ```bash
+  Enter command: backup
+  ```
+
+- Восстановить из резервной копии:
+  ```bash
+  Enter command: restore
+  ```
+
 - Очистить экран:
   ```bash
   Enter command: clear
   ```
 
-## Примечания
+## Сборка исполняемого файла
 
-- Программа предназначена для работы только на Windows.
-- Убедитесь, что вы запускаете программу с правами администратора, чтобы избежать проблем с доступом к файлу `hosts`.
+Для создания исполняемого файла используйте `pyinstaller`:
+
+```bash
+pyinstaller --onefile --name="whm" --add-data "whm.ico;." --icon=whm.ico app.py
+```
+
+## Скачать готовый exe файл
+
+Вы можете скачать готовый исполняемый файл в разделе [релизы](https://github.com/king-tri-ton/WindowsHostsManager/releases) и проверить статус сборки на странице: [GitHub Actions](https://github.com/king-tri-ton/WindowsHostsManager/actions/workflows/build_and_scan.yml).
 
 ## Лицензия
 
