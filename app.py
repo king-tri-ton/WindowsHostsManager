@@ -1,8 +1,10 @@
 import os
 import sys
 import ctypes
+import shutil
 
 HOSTS_PATH = r'C:\Windows\System32\drivers\etc\hosts'
+BACKUP_PATH = HOSTS_PATH + '.back'
 
 def is_admin():
     try:
@@ -49,12 +51,35 @@ def print_help():
     print("  add      - Add an entry (e.g., add <IP> <hostname>)")
     print("  remove   - Remove an entry (e.g., remove <hostname>)")
     print("  list     - List all entries in the hosts file")
+    print("  backup   - Create a backup of the hosts file")
+    print("  restore  - Restore the hosts file from backup")
     print("  clear    - Clear the terminal screen")
     print("  help     - Show this help message")
     print("  exit     - Exit the application")
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
+
+def backup_hosts():
+    try:
+        shutil.copy2(HOSTS_PATH, BACKUP_PATH)
+        print(f"Backup created: {BACKUP_PATH}")
+    except IOError as e:
+        print(f"Failed to create backup: {e}")
+
+def restore_hosts():
+    if os.path.exists(BACKUP_PATH):
+        confirm = input("Are you sure you want to restore the hosts file from backup? (yes/no): ").strip().lower()
+        if confirm == 'yes':
+            try:
+                shutil.copy2(BACKUP_PATH, HOSTS_PATH)
+                print(f"Hosts file restored from backup: {BACKUP_PATH}")
+            except IOError as e:
+                print(f"Failed to restore hosts file: {e}")
+        else:
+            print("Restore operation canceled.")
+    else:
+        print("No backup file found.")
 
 def main():
     while True:
@@ -69,6 +94,10 @@ def main():
             remove_entry(hostname)
         elif command == 'list':
             list_entries()
+        elif command == 'backup':
+            backup_hosts()
+        elif command == 'restore':
+            restore_hosts()
         elif command == 'help':
             print_help()
         elif command == 'clear':
