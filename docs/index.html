@@ -16,103 +16,143 @@
             <li><a href="#usage">Использование</a></li>
             <li><a href="#commands">Команды</a></li>
             <li><a href="#examples">Примеры</a></li>
+            <li><a href="#screenshots">Скриншоты</a></li>
             <li><a href="#troubleshooting">Решение проблем</a></li>
             <li><a href="#contact">Контакты</a></li>
         </ul>
     </aside>
-    
+
     <main>
         <header>
+            <img src="https://raw.githubusercontent.com/king-tri-ton/WindowsHostsManager/master/whm.ico" alt="Логотип WHM" width="96" height="96">
             <h1>Документация WindowsHostsManager</h1>
-            <p>Дата публикации: 2 сентября 2024 | Версия: 1.0</p>
+            <p>Версия: 2.0.0 | Автор: King Triton | Обновлено: 2 ноября 2025</p>
         </header>
 
         <section id="overview">
             <h2>Обзор</h2>
-            <p>WindowsHostsManager — это утилита для управления файлом <code>hosts</code> в операционной системе Windows. Она позволяет выполнять следующие операции:</p>
+            <p><strong>WindowsHostsManager</strong> — это кроссплатформенная CLI-утилита для управления файлом <code>hosts</code> в операционных системах Windows и Linux.</p>
+            <p>Позволяет выполнять следующие действия:</p>
             <ul>
-                <li>Добавлять записи в файл <code>hosts</code>;</li>
-                <li>Удалять записи из файла <code>hosts</code>;</li>
+                <li>Добавлять и удалять записи в файле <code>hosts</code>;</li>
                 <li>Просматривать текущие записи;</li>
-                <li>Создавать резервные копии файла <code>hosts</code>;</li>
-                <li>Восстанавливать файл <code>hosts</code> из резервной копии;</li>
-                <li>Очистить экран терминала.</li>
+                <li>Создавать резервные копии и восстанавливать файл <code>hosts</code>;</li>
+                <li>Редактировать существующие записи;</li>
+                <li>Работать как из терминала, так и из собранного .exe (Windows).</li>
             </ul>
         </section>
-        
+
         <section id="installation">
             <h2>Установка</h2>
-            <p>Для установки и использования WindowsHostsManager выполните следующие шаги:</p>
+            <p>WindowsHostsManager можно установить с помощью <code>pipx</code> — рекомендуемый способ для CLI-приложений на Python.</p>
+
+            <h3>Windows</h3>
             <ol>
-                <li>Клонируйте репозиторий или скачайте файл <code>app.py</code> с [официального репозитория](https://github.com/king-tri-ton/WindowsHostsManager).</li>
-                <li>Убедитесь, что у вас установлен Python версии 3.x. Вы можете проверить это, выполнив команду:</li>
-                <pre><code>python --version</code></pre>
-                <li>Перейдите в каталог, где находится файл <code>app.py</code>.</li>
-                <li>Откройте командную строку и выполните следующую команду для установки зависимостей (если таковые есть):</li>
-                <pre><code>pip install -r requirements.txt</code></pre>
-                <li>Запустите программу, используя команду:</li>
-                <pre><code>python app.py</code></pre>
+                <li>Убедитесь, что установлен <code>Python 3.8+</code>.</li>
+                <li>Откройте PowerShell или CMD <strong>с правами администратора</strong>.</li>
+                <li>Установите pipx:</li>
+                <pre><code>pip install pipx</code></pre>
+                <li>Перейдите в папку проекта:</li>
+                <pre><code>cd C:\Users\King Triton\PythonProjectMngr\Projects\WindowsHostsManager</code></pre>
+                <li>Выполните установку:</li>
+                <pre><code>pipx install .</code></pre>
+                <li>После установки программа доступна глобально:</li>
+                <pre><code>whm list</code></pre>
             </ol>
-            <p>Программа потребует прав администратора для доступа к файлу <code>hosts</code>. Убедитесь, что вы запускаете её с правами администратора.</p>
+
+            <h3>Linux (например Kali)</h3>
+            <ol>
+                <li>Установите pipx:</li>
+                <pre><code>sudo apt install pipx</code></pre>
+                <li>Перейдите в папку проекта:</li>
+                <pre><code>cd ~/WindowsHostsManager</code></pre>
+                <li>Установите:</li>
+                <pre><code>pipx install .</code></pre>
+                <li>Запустите утилиту:</li>
+                <pre><code>whm list</code></pre>
+                <li>Для записи в системный файл <code>hosts</code> используйте:</li>
+                <pre><code>sudo whm add 127.0.0.1 example.local</code></pre>
+            </ol>
+
+            <p>После установки можно использовать <code>whm</code> из любой директории в системе.</p>
         </section>
-        
+
         <section id="usage">
             <h2>Использование</h2>
-            <p>После запуска программы вы увидите приглашение для ввода команд. Введите команду и следуйте инструкциям на экране для выполнения различных операций с файлом <code>hosts</code>.</p>
-            <img src="assets/img/149.png" alt="Использование WindowsHostsManager">
+            <p>После запуска <code>whm</code> вы можете вводить команды напрямую в консоли.</p>
+            <pre><code>whm help</code></pre>
+            <p>Программа покажет список доступных команд и краткое описание каждой.</p>
         </section>
-        
+
         <section id="commands">
             <h2>Команды</h2>
-            <p>WindowsHostsManager поддерживает следующие команды:</p>
             <ul>
-                <li><strong>add &lt;IP&gt; &lt;hostname&gt;</strong> — Добавить запись в файл <code>hosts</code>. Пример: <code>add 127.0.0.1 example.com</code></li>
-                <li><strong>remove &lt;hostname&gt;</strong> — Удалить запись по имени хоста. Пример: <code>remove example.com</code></li>
-                <li><strong>list</strong> — Показать все текущие записи в файле <code>hosts</code>. Выводит все строки файла.</li>
-                <li><strong>backup</strong> — Создать резервную копию файла <code>hosts</code>. Резервная копия будет сохранена как <code>hosts.back</code>.</li>
-                <li><strong>restore</strong> — Восстановить файл <code>hosts</code> из резервной копии. Запрашивает подтверждение перед восстановлением.</li>
-                <li><strong>clear</strong> — Очистить экран терминала. Команда работает как для Windows, так и для Unix-подобных систем.</li>
-                <li><strong>help</strong> — Показать список доступных команд и краткое описание каждой команды.</li>
-                <li><strong>exit</strong> — Выйти из программы.</li>
+                <li><strong>whm add &lt;IP&gt; &lt;hostname&gt;</strong> — добавить запись в файл hosts.</li>
+                <li><strong>whm remove &lt;hostname&gt;</strong> — удалить запись по имени хоста.</li>
+                <li><strong>whm list</strong> — вывести текущие записи.</li>
+                <li><strong>whm backup</strong> — создать резервную копию hosts.</li>
+                <li><strong>whm restore</strong> — восстановить hosts из резервной копии.</li>
+                <li><strong>whm edit &lt;hostname&gt;</strong> — изменить IP для существующего хоста.</li>
+                <li><strong>whm clear</strong> — очистить экран терминала.</li>
+                <li><strong>whm help</strong> — справка.</li>
+                <li><strong>whm exit</strong> — выйти из программы.</li>
             </ul>
         </section>
-        
+
         <section id="examples">
             <h2>Примеры</h2>
-            <p>Ниже приведены примеры использования команд:</p>
-            <p><strong>Добавление записи:</strong></p>
-            <pre><code>Введите команду: add 127.0.0.1 example.com
-Добавлено: 127.0.0.1 example.com</code></pre>
-            <p><strong>Удаление записи:</strong></p>
-            <pre><code>Введите команду: remove example.com
-Удалены записи для: example.com</code></pre>
-            <p><strong>Просмотр всех записей:</strong></p>
-            <pre><code>Введите команду: list
-Текущие записи в файле hosts:
+            <pre><code>whm add 127.0.0.1 example.com
+Added: 127.0.0.1 example.com
+</code></pre>
+
+            <pre><code>whm remove example.com
+Removed entries for: example.com
+</code></pre>
+
+            <pre><code>whm list
+Current entries in hosts file:
 127.0.0.1 localhost
-127.0.0.1 example.com</code></pre>
-            <p><strong>Создание резервной копии:</strong></p>
-            <pre><code>Введите команду: backup
-Резервная копия создана: hosts.back</code></pre>
-            <p><strong>Восстановление из резервной копии:</strong></p>
-            <pre><code>Введите команду: restore
-Файл hosts восстановлен из резервной копии: hosts.back</code></pre>
+127.0.0.1 example.com
+</code></pre>
+
+            <pre><code>whm backup
+Backup created: hosts.back
+</code></pre>
+
+            <pre><code>whm restore
+Hosts file restored from backup.
+</code></pre>
         </section>
-        
+
+        <section id="screenshots">
+            <h2>Скриншоты</h2>
+
+            <div style="margin-bottom: 20px;">
+                <h3>Windows 10</h3>
+                <img src="assets/img/Screenshot_4.png" alt="Windows Screenshot" width="700">
+            </div>
+
+            <div>
+                <h3>Kali Linux</h3>
+                <img src="assets/img/Screenshot_3.png" alt="Linux Screenshot" width="700">
+            </div>
+        </section>
+
         <section id="troubleshooting">
             <h2>Решение проблем</h2>
-            <p>Если у вас возникли проблемы с использованием WindowsHostsManager, попробуйте следующие шаги:</p>
             <ul>
-                <li>Убедитесь, что вы запускаете программу с правами администратора. Для этого нажмите правой кнопкой мыши на командной строке или терминале и выберите "Запуск от имени администратора".</li>
-                <li>Проверьте, что файл <code>hosts</code> не открыт в другом приложении, таком как текстовый редактор.</li>
-                <li>Если команда не работает, убедитесь в правильности синтаксиса и данных. Проверьте, что команды вводятся в правильном формате.</li>
-                <li>Если проблема не устраняется, обратитесь в службу поддержки или создайте [issue](https://github.com/king-tri-ton/WindowsHostsManager/issues) на GitHub.</li>
+                <li>Запускайте консоль с правами администратора (Windows) или используйте <code>sudo</code> (Linux).</li>
+                <li>Убедитесь, что файл <code>hosts</code> не открыт в другом приложении.</li>
+                <li>Если команда не работает — проверьте синтаксис и правильность аргументов.</li>
+                <li>При ошибках создайте <a href="https://github.com/king-tri-ton/WindowsHostsManager/issues">Issue на GitHub</a>.</li>
             </ul>
         </section>
 
         <section id="contact">
             <h2>Контакты</h2>
-            <p>Если у вас есть вопросы или предложения, вы можете связаться с нами по электронной почте: <a href="mailto:mdolmatov99@gmail.com">mdolmatov99@gmail.com</a></p>
+            <p>Автор проекта: <strong>King Triton</strong></p>
+            <p>Email: <a href="mailto:mdolmatov99@gmail.com">mdolmatov99@gmail.com</a></p>
+            <p>GitHub: <a href="https://github.com/king-tri-ton/WindowsHostsManager">https://github.com/king-tri-ton/WindowsHostsManager</a></p>
         </section>
     </main>
 </body>

@@ -1,96 +1,113 @@
-# WindowsHostsManager
+<p align="center">
+  <img src="whm.png" alt="WindowsHostsManager Logo" width="128">
+</p>
 
-WindowsHostsManager — это утилита для управления файлом `hosts` в операционной системе Windows. Программа позволяет добавлять, удалять, просматривать записи, создавать резервные копии и восстанавливать файл `hosts`.
+<h1 align="center">WindowsHostsManager</h1>
 
-## Требования
+<p align="center">
+  Кроссплатформенная CLI-утилита для управления файлом <code>hosts</code> в Windows и Linux  
+  <br>
+  Версия: <strong>2.0.0</strong> • Автор: <strong>King Triton</strong>
+</p>
 
-- Windows с правами администратора
-- Python 3.x
+---
 
-## Установка
+## 📘 Описание
 
-1. Клонируйте репозиторий или скачайте файл `app.py`.
-2. Убедитесь, что у вас установлен Python 3.x.
+**WindowsHostsManager** — это мощная и простая в использовании CLI-утилита для управления системным файлом `hosts`.  
+Поддерживает как **Windows**, так и **Linux**, позволяя:
 
-## Запуск
+- Добавлять и удалять записи
+- Просматривать текущие хосты
+- Создавать резервные копии и восстанавливать их
+- Работать как через `python`, так и через установленную CLI-команду `whm`
 
-Для запуска программы выполните следующую команду в терминале или командной строке:
+---
+
+## 🧩 Возможности
+
+- **Кроссплатформенность** — одинаково работает в Windows и Linux  
+- **Простота** — интуитивно понятные команды  
+- **Безопасность** — требует прав администратора или `sudo`  
+- **Резервные копии** — автоматическое сохранение и восстановление файла `hosts`  
+- **CLI-доступ** — можно вызывать напрямую из терминала (`whm list`, `whm add ...`)  
+
+---
+
+## ⚙️ Требования
+
+- Python **3.8+**
+- Для **Windows** — запуск от имени администратора  
+- Для **Linux** — запуск через `sudo` (если нужно изменить системный `hosts`)
+
+---
+
+## 🚀 Установка
+
+### Через `pipx` (рекомендуется)
+```bash
+pip install pipx
+pipx install .
+````
+
+После установки команда `whm` будет доступна глобально:
 
 ```bash
-python app.py
+whm list
 ```
 
-**Важно:** Программа требует прав администратора, так как файл `hosts` находится в системной директории.
-
-## Команды
-
-- `add <IP> <hostname>` — Добавить запись в файл `hosts`. Например: `add 127.0.0.1 example.com`
-- `remove <hostname>` — Удалить запись по имени хоста. Например: `remove example.com`
-- `list` — Показать все текущие записи в файле `hosts`.
-- `backup` — Создать резервную копию файла `hosts`.
-- `restore` — Восстановить файл `hosts` из резервной копии.
-- `clear` — Очистить экран терминала.
-- `help` — Показать список доступных команд.
-- `exit` — Выйти из программы.
-
-## Примеры использования
-
-- Добавить запись:
-  ```bash
-  Enter command: add 127.0.0.1 example.com
-  ```
-  Вывод:
-  ```
-  Added: 127.0.0.1 example.com
-  ```
-
-- Удалить запись:
-  ```bash
-  Enter command: remove example.com
-  ```
-  Вывод:
-  ```
-  Removed entries for: example.com
-  ```
-
-- Показать все записи:
-  ```bash
-  Enter command: list
-  ```
-  Вывод:
-  ```
-  Current entries in hosts file:
-  127.0.0.1 localhost
-  127.0.0.1 example.com
-  ```
-
-- Создать резервную копию:
-  ```bash
-  Enter command: backup
-  ```
-
-- Восстановить из резервной копии:
-  ```bash
-  Enter command: restore
-  ```
-
-- Очистить экран:
-  ```bash
-  Enter command: clear
-  ```
-
-## Сборка исполняемого файла
-
-Для создания исполняемого файла используйте `pyinstaller`:
+### Локальный запуск
 
 ```bash
-pyinstaller --onefile --name="whm" --add-data "whm.ico;." --icon=whm.ico app.py
+python cli.py list
 ```
 
-## Скачать готовый exe файл
+---
 
-Вы можете скачать готовый исполняемый файл в разделе [релизы](https://github.com/king-tri-ton/WindowsHostsManager/releases) и проверить статус сборки на странице: [GitHub Actions](https://github.com/king-tri-ton/WindowsHostsManager/actions/workflows/build_and_scan.yml).
+## 💻 Примеры использования
 
-## Лицензия
+| Команда                         | Описание                        |
+| ------------------------------- | ------------------------------- |
+| `whm add 127.0.0.1 example.com` | Добавить запись                 |
+| `whm remove example.com`        | Удалить запись                  |
+| `whm list`                      | Показать все записи             |
+| `whm backup`                    | Создать резервную копию         |
+| `whm restore`                   | Восстановить из резервной копии |
 
-Этот проект лицензирован под [MIT License](LICENSE).
+---
+
+## 🖥️ Скриншоты
+
+### Kali Linux
+
+<img src="Screenshot_3.png" alt="WindowsHostsManager in Kali Linux" width="600">
+
+### Windows 10
+
+<img src="Screenshot_4.png" alt="WindowsHostsManager in Windows 10" width="600">
+
+---
+
+## 📦 Скачать готовый релиз
+
+Готовые сборки доступны в разделе
+👉 [Releases](https://github.com/king-tri-ton/WindowsHostsManager/releases)
+
+---
+
+## ⚖️ Лицензия
+
+Проект распространяется под лицензией [MIT License](LICENSE).
+
+---
+
+## ✉️ Контакт
+
+Автор: **King Triton**
+GitHub: [https://github.com/king-tri-ton](https://github.com/king-tri-ton)
+
+---
+
+<p align="center">
+  Сделано с заботой о кроссплатформенности 🖤
+</p>

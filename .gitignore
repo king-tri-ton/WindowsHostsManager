@@ -1,0 +1,10 @@
+__pycache__/
+.env
+.venv/
+windows_hosts_manager.egg-info
+build/
+dist/
+*.log
+*.bkp
+*.pyc
+*.cmd
